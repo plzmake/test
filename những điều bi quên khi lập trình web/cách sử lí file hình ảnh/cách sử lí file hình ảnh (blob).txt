@@ -1,0 +1,35 @@
+khi ta lấy file hình ảnh lên từ sever (database) (chưa đổi )
+
+sẽ có dạng  { type:'Buffer', data:Array(...)}
+
+để sử dụng trong react js (web) thì convert = "new 
+
+Buffer(userInfo.image, 'base64').toString('binary');"
+
+sang string dạng base64 cũng là dạng dữ liệu cần để upload từ web 
+
+( react js) lên sever(database) 
+
+trong đó : 
+
+userInfo.image là file hình ảnh lấy từ sever 
+
+còn file ảnh tải từ máy tính  các nguồn tương  tự dưới dạng file.png
+ 
+thì convert sang string dạng base64 bằng  CommonUtils.getBase64(file) 
+
+trong dự án FE
+
+TÓM TẮT :  web -> sever
+	  file.png ->base64(string) hoặc
+	 buffer -> base64(string)
+	
+	sever -> web
+	base64(string)->buffer
+
+nói chung :
+-để hiển thị ảnh trên web thì cần file.png hoặc định dạng base64 
+
+-còn để tải lên database(sever) cần chuyển sang  base64
+      
+	  

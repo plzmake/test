@@ -1,0 +1,5 @@
+ta chọn thẻ option có value nào thì thẻ select có value đó và
+
+nếu ta sét  giá trị value thẻ select thì sẽ chọn được  thẻ option có 
+
+value bằng (===) giá trị value thẻ select ta vừa sét

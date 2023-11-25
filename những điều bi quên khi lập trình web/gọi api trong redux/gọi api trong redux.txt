@@ -1,0 +1,3 @@
+khi làm thực tế khác localhost sẽ load api tốn nhiều thời gian 
+
+=> cách sử lí và nhận biết ở video 69/139 (#58 của SERN của hoidanit)

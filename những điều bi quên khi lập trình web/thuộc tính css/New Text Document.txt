@@ -1,0 +1,231 @@
+thuộc tính gap, float
+
+so sánh  background và  background-color
+
+về flex
+
+outline
+
+width: fit-content;
+
+ khi css ta có thể dùng "border: 1px solid red" để dễ nhận biết dùng css 
+
+cách căn giữa theo chiều  ngang css thẳng vào phần tử cần căn giữa như ( margin : 0 auto ;)
+
+web css content icon , css react -slick, html copyright
+
+cách chỉnh sửa thuộc tính css class của thư viện react -slick ở video
+
+ 60/139 của hoidanit hoặc tên video "Customize Tùy Chỉnh React-Slider-Carousel Trong React App | React.JS Cho Người Mới Bắt Đầu"
+
+thu âm bài nói chính mình
+
+
+CREATE PROCEDURE insert_Artist(
+    @p_Artist_id INT,
+    @p_Artist_name VARCHAR(255),
+    @p_Artist_Email VARCHAR(255),
+    @p_Artist_phoneNumber VARCHAR(255),
+    @p_Artist_birthDate VARCHAR(10),
+    @p_Artist_biography TEXT,
+)
+BEGIN
+    -- Kiểm tra ràng buộc dữ liệu
+    
+    
+	SET @converted_date := STR_TO_DATE(p_Artist_birthDate, '%d-%m-%Y');
+    SET @age := TIMESTAMPDIFF(YEAR, @converted_date, CURDATE());
+    
+    -- Kiểm tra tuổi phải từ 13 tuổi trở lên
+    IF @age < 13 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Lỗi: Người dùng phải từ 13 tuổi trở lên!';
+    END IF;
+    SET @word_count := LENGTH(p_Artist_biography) - LENGTH(REPLACE(p_Artist_biography, ' ', '')) + 1;
+
+    -- Kiểm tra số từ không vượt quá 1000
+    IF @word_count > 1000 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Lỗi: Tiểu sử không được vượt quá 1000 từ!';
+    END IF;
+    -- Thực hiện câu truy vấn insert
+    INSERT INTO Artist (Artist_id,Artist_name,Artist_Email,Artist_phoneNumber,Artist_birthDate,Artist_biography)
+    VALUES (@p_Artist_id,@p_Artist_name ,@p_Artist_Email,@p_Artist_phoneNumber,@converted_date,@p_Artist_biography);
+    
+    -- Xuất thông báo thành công
+    SELECT 'Thêm dữ liệu thành công!' AS 'Thông báo';
+END;
+
+CREATE PROCEDURE insert_Album(
+    @p_Album_id INT,
+    @p_Album_title VARCHAR(255),
+    @p_Album_year VARCHAR(255),
+    @p_Album_numberOfSong VARCHAR(255),
+    @p_Album_length TIME,
+    
+)
+BEGIN
+    -- Kiểm tra ràng buộc dữ liệu
+    
+	 SET @duration_hour := HOUR(p_Album_length);
+     IF @duration_hour > 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Lỗi: Độ dài bài hát không được quá 1 tiếng!';
+    END IF;
+    -- Thực hiện câu truy vấn insert
+    INSERT INTO Album (Album_id,Album_title,Album_year,Album_numberOfSong,Album_length)
+    VALUES (@p_Album_id,@p_Album_title,@p_Album_year,@p_Album_numberOfSong,@p_Album_length);
+    
+    -- Xuất thông báo thành công
+    SELECT 'Thêm dữ liệu thành công!' AS 'Thông báo';
+END;
+
+CREATE PROCEDURE insert_Song(
+    @p_Song_id INT,
+    @p_Song_title VARCHAR(255),
+    @p_Song_length TIME,
+    
+)
+BEGIN
+    -- Kiểm tra ràng buộc dữ liệu
+    
+    
+	 SET @duration_hour := HOUR(p_Song_length);
+     IF @duration_hour > 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Lỗi: Độ dài bài hát không được quá 1 tiếng!';
+    END IF;
+    -- Thực hiện câu truy vấn insert
+    INSERT INTO Song (Song_id,Song_title,Song_length)
+    VALUES (@p_Song_id,@p_Song_title,@p_Song_length);
+    
+    -- Xuất thông báo thành công
+    SELECT 'Thêm dữ liệu thành công!' AS 'Thông báo';
+END;
+
+CREATE PROCEDURE insert_Playlist(
+    @p_Playlist_numberOfSong INT,
+    @p_Playlist_name VARCHAR(255),
+    @p_Playlist_length TIME,
+    
+)
+BEGIN
+    -- Kiểm tra ràng buộc dữ liệu
+    
+    
+	 -- SET @duration_hour := HOUR(p_Playlist_length);
+     -- IF @duration_hour > 1 THEN
+        -- SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Lỗi: Độ dài bài hát không được quá 1 tiếng!';
+   -- END IF;
+    -- Thực hiện câu truy vấn insert
+    INSERT INTO Playlist (Playlist_numberOfSong,Playlist_name,Playlist_length)
+    VALUES (@p_Playlist_numberOfSong,@p_Playlist_name,@p_Playlist_length);
+    
+    -- Xuất thông báo thành công
+    SELECT 'Thêm dữ liệu thành công!' AS 'Thông báo';
+END;
+
+CREATE PROCEDURE insert_Genre(
+  
+    @p_Genre_name VARCHAR(255),
+    @p_Genre_des TEXT,
+    
+)
+BEGIN
+    -- Kiểm tra ràng buộc dữ liệu
+    
+    
+	 
+    -- Thực hiện câu truy vấn insert
+    INSERT INTO Genre (Genre_name,Genre_des)
+    VALUES (@p_Genre_name,@p_Genre_des);
+    
+    -- Xuất thông báo thành công
+    SELECT 'Thêm dữ liệu thành công!' AS 'Thông báo';
+END;
+
+CREATE PROCEDURE insert_User(
+    @p_User_id INT,
+    @p_User_name VARCHAR(255),
+    @p_User_Email VARCHAR(255),
+    @p_User_phoneNumber VARCHAR(255),
+    @p_User_birthDate VARCHAR(10),
+    
+)
+BEGIN
+    -- Kiểm tra ràng buộc dữ liệu
+    
+    
+	SET @converted_date := STR_TO_DATE(p_User_birthDate, '%d-%m-%Y');
+    SET @age := TIMESTAMPDIFF(YEAR, @converted_date, CURDATE());
+    
+    -- Kiểm tra tuổi phải từ 13 tuổi trở lên
+    IF @age < 13 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Lỗi: Người dùng phải từ 13 tuổi trở lên!';
+    END IF;
+    
+    -- Thực hiện câu truy vấn insert
+    INSERT INTO User (User_id,User_name,User_Email,User_phoneNumber,User_birthDate)
+    VALUES (@p_User_id,@p_User_name ,@p_User_Email,@p_User_phoneNumber,@converted_date);
+    
+    -- Xuất thông báo thành công
+    SELECT 'Thêm dữ liệu thành công!' AS 'Thông báo';
+END;
+
+
+---------------
+CREATE PROCEDURE update_Artist(
+    @p_Artist_id INT,
+    @p_new_Artist_name VARCHAR(255),
+    @p_new_Artist_Email VARCHAR(255),
+    @p_new_Artist_phoneNumber VARCHAR(255),
+    @p_new_Artist_birthDate VARCHAR(10),
+    @p_new_Artist_biography TEXT,
+)
+BEGIN
+    -- Kiểm tra ràng buộc dữ liệu
+    
+    
+	
+    -- Thực hiện câu truy vấn update
+    UPDATE Artist 
+     SET Artist_name = p_new_Artist_name,
+         Artist_Email = p_new_Artist_Email,
+         Artist_phoneNumber = p_new_Artist_phoneNumber,
+         Artist_birthDate = p_new_Artist_birthDate,
+         Artist_biography = p_new_Artist_biography
+    WHERE Artist_id = p_Artist_id;
+    
+    -- Xuất thông báo thành công
+    SELECT 'Cập nhật thành công!' AS 'Thông báo';
+END;
+
+CREATE PROCEDURE delete_Artist(
+    @p_Artist_id INT
+    
+)
+BEGIN
+    -- Kiểm tra ràng buộc dữ liệu
+    
+    
+	
+    DELETE FROM Artist WHERE Artist_id = p_Artist_id;
+    
+    -- Xuất thông báo thành công
+    SELECT 'Xóa thành công!' AS 'Thông báo';
+END;
+
+CREATE TABLE IF NOT EXISTS user_counts (
+    user_id INT,
+    count INT,
+    PRIMARY KEY (user_id)
+);
+
+-- Tạo trigger tính toán số lượng người dùng
+DELIMITER $$
+CREATE TRIGGER after_update_user
+AFTER INSERT ON user
+FOR EACH ROW
+BEGIN
+    -- Tính toán số lượng người dùng và cập nhật
+    UPDATE user_counts
+    SET count = count + 1
+    WHERE user_id = NEW.id;
+END$$
+DELIMITER ;

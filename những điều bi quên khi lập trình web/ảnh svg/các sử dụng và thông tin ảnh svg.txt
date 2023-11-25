@@ -1,0 +1,26 @@
+nếu muốn lấy ảnh svg từ web xuống để trực tiếp:
+
++ trong file html: thì copy -> copy element rồi paste trong file html
+
++ trong file js ở reactjs thì :
+	**** thì copy -> copy element rồi paste ở 
+
+	notepad ở thẻ path trong thẻ svg ta thêm nội dung trong thẻ style ở thẻ svg lúc copy  thành 
+
+	định  dạng style={{ fill: '#49bce2',size:'12px'(ví dụ css) }} rồi xóa thẻ style đó và paste về file js
+
+
+	**** nếu ảnh svg có nhiều class thì ta thêm style ứng  vs class đó  vào từng thẻ path có class đó rồi 
+
+	xóa thuộc tính class 
+
++để tạo thành file svg thì copy -> copy element rồi paste ở notepad giống với reactjs và thay thế 
+
+style={{ fill: '#49bce2',size:'12px'(ví dụ css) }} bằng fill="red" và thêm ở thẻ svg ta thêm 
+
+xmlns="http://www.w3.org/2000/svg"
+
+(ví dụ :<svg viewBox="0 0 666.63 146.21" xmlns="http://www.w3.org/2000/svg"...> ...</svg>)
+ -> xong bấm file -> save as lưu file có đuôi svg
+
+hoặc dùng cách 2 là chỉ việc thêm ở thẻ svg ta thêm xmlns="http://www.w3.org/2000/svg" là xong

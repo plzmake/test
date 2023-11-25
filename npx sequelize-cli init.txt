@@ -1,0 +1,17 @@
+npx sequelize-cli init
+cách sử dụng await async promise trong js 
+đến 54/139
+cách sử dụng orm trong js
+axios , redux  sequelize, emitter trong js
+cách tìm tài liệu a b c
+a là framwork như (express , npm , sequelize,.....)
+
+良い悲しい日本の音楽
+tieng anh xong 39/71
+ngay 28/10 bo bot
+code xác thực trường  du lieu
+
+
+thoi loan 491683
+188483
+124946 
